@@ -1,0 +1,11 @@
+# Required (or not) Tank publish types
+
+primary_publish:
+    maya_scene_file:        "Matchmove Maya Scene"
+secondary_publish:
+    camera:                 "Matchmove Camera"
+    marker_cones:           "Matchmove Cones"
+    marker_geo:             "Matchmove Model"
+    lens_distortion_script: "Matchmove Lens Distortion"
+    
+

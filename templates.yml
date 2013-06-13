@@ -1,0 +1,32 @@
+keys:
+    Show:
+        type: str
+    Sequence:
+        type: str
+    Shot:
+        type: str
+    name:
+        type: str
+    version:
+        format_spec: '03'
+        type: int
+
+paths:
+    #
+    # Matchmove Publish Templates
+    # ===========================
+
+    maya_shot_project:         sequences/{Sequence}/{Shot}/3d/maya
+    shot_publish_root:         sequences/{Sequence}/{Shot}/publish
+
+    # Location of 3de lensDistort nuke work file
+    3de_shot_lens_work:        sequences/{Sequence}/{Shot}/matchmove/trackWork/3de/lensDistort/{Shot}_lensDistort_v{version}.nk
+
+    # Location of published files
+    mm_shot_scene_publish:   "@shot_publish_root/mm/{Shot}_matchmove_v{version}/mayaScene/{Shot}_mayaScene_v{version}.ma"
+    mm_shot_camera_publish:  "@shot_publish_root/mm/{Shot}_matchmove_v{version}/camPublish/{Shot}_{name}_camPublish_v{version}.fbx"
+    mm_shot_cones_publish:   "@shot_publish_root/mm/{Shot}_matchmove_v{version}/conesPublish/{Shot}_cones_v{version}.obj"
+    mm_shot_geo_publish:     "@shot_publish_root/mm/{Shot}_matchmove_v{version}/geoPublish/{Shot}_{name}_geo_v{version}.obj"
+    mm_shot_lens_publish:    "@shot_publish_root/mm/{Shot}_matchmove_v{version}/lensDistortPublish/{Shot}_lensDistortPublish_v{version}.nk"
+    mm_shot_note_publish:    "@shot_publish_root/mm/{Shot}_matchmove_v{version}/{Shot}_metadata_v{version}.txt"
+

@@ -1,0 +1,82 @@
+engines:
+  tk-maya:
+    apps:
+      matchmove-multi-publish:
+        display_name:               "Publish Matchmove"
+        hook_copy_file:             default
+        hook_post_publish:          default
+        hook_primary_pre_publish:   default
+        hook_primary_publish:       default
+        hook_scan_scene:            matchmove_publish/scan_scene_maya_matchmove
+        hook_secondary_pre_publish: matchmove_publish/pre_publish_maya_matchmove
+        hook_secondary_publish:     matchmove_publish/publish_maya_matchmove
+        hook_thumbnail:             default
+        primary_description:        "Publish the current scene"
+        primary_display_name:       "Publish Maya Scene"
+        primary_icon:               icons/maya.png
+        primary_publish_template:   maya_shot_scene_publish
+        primary_scene_item_type:    work_file
+        primary_tank_type:          "Matchmove Maya Scene"
+        secondary_outputs:
+        - name: camera_export
+          description:      "Export camera as .fbx"
+          display_name:     "Publish Camera"
+          display_group:    Cameras
+          icon:             icons/camera_icon_40px.png
+          required:         true
+          selected:         true          
+          scene_item_type:  camera
+          publish_template: maya_shot_camera_publish
+          tank_type:        "Matchmove Camera"
+        - name: cone_geo_export
+          description:      "Export marker cones as .obj"
+          display_name:     "Publish Cones"
+          display_group:    Cones
+          icon:             icons/cones_icon_40px.png
+          required:         false
+          selected:         true
+          scene_item_type:  cones_geo
+          publish_template: maya_shot_cones_publish
+          tank_type:        "Matchmove Cones"
+        - name: model_geo_export
+          description:      Export scene marker geometry as .obj
+          display_name:     Publish Geometry
+          display_group:    Geometry
+          icon:             icons/polygon_icon_40px.png
+          required:         false
+          selected:         true
+          scene_item_type:  model_geo
+          publish_template: maya_shot_geo_publish 
+          tank_type:        "Matchmove Model"
+        - name: lens_distort_export
+          description:      "Export Lens Distortion nodes for Nuke"
+          display_group:    "De-Warp Lenses"
+          display_name:     "Publish Lenses"
+          icon:             icons/lens_icon_40px.png
+          required:         false
+          selected:         true
+          scene_item_type:  lens_node
+          publish_template: maya_shot_lens_publish
+          tank_type:        "Matchmove Lens Distortion"
+        - name: shotgun_note_create
+          description:      Generate Shot Note
+          display_name:     Create Note
+          display_group:    Other
+          icon:             icons/notes_icon_40px.png
+          required:         false
+          selected:         true
+          scene_item_type:  shotgun_note
+          publish_template: maya_shot_note_publish    
+          tank_type:        None
+        template_work: maya_shot_work
+        location: {name: tk-multi-publish, type: app_store, version: v0.2.3}
+      matchmove-loader:
+        dependency_mode: true
+        hook_add_file_to_scene: matchmove_import/matchmove_maya_add_file
+        menu_name: "Load Matchmove Data"
+        publish_filters: []
+        sg_entity_types:
+          Shot: []
+        single_select: false
+        tank_types: ["Matchmove Maya Scene"]
+        location: {name: tk-multi-loader, type: app_store, version: v0.2.2}
